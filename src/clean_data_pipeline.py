@@ -23,7 +23,6 @@ Quy tac lam sach:
 =============================================================================
 """
 
-import sys
 import hashlib
 from pathlib import Path
 import pandas as pd
@@ -123,7 +122,7 @@ def main():
         total_values_standardized = 0
 
         # 2.1 Chuan hoa khoang trang dau/cuoi cho cac cot chuoi
-        str_cols = df_proc.select_dtypes(include=["object"]).columns
+        str_cols = df_proc.select_dtypes(include=["object", "str"]).columns
         for col in str_cols:
             s = df_proc[col]
             not_null_mask = s.notna()
@@ -182,8 +181,6 @@ def main():
     print("[BUOC 3] KIEM CHUNG BAT BUOC HAU XU LY")
     print("=" * 70)
 
-    verification_passed = True
-
     # Kiem tra 3.1: So sanh so dong va ten cot
     print("\n[KC 1] Kiem tra so dong va ten cot giua raw va processed...")
     total_raw_rows = 0
@@ -211,31 +208,22 @@ def main():
 
     # Kiem tra 3.3: Kiem tra khong thay doi so tien, so luong, ma dinh danh
     print("\n[KC 3] Kiem tra tinh bat bien cua so tien, so luong va ma dinh danh...")
-    # order_items
-    assert np.isclose(raw_dataframes["order_items.csv"]["quantity"].sum(),
-                      processed_dataframes["order_items.csv"]["quantity"].sum()), "LOI: quantity order_items bi doi!"
-    assert np.isclose(raw_dataframes["order_items.csv"]["unit_price"].sum(),
-                      processed_dataframes["order_items.csv"]["unit_price"].sum()), "LOI: unit_price order_items bi doi!"
-    assert np.isclose(raw_dataframes["order_items.csv"]["discount_amount"].sum(),
-                      processed_dataframes["order_items.csv"]["discount_amount"].sum()), "LOI: discount_amount bi doi!"
-    # payments
-    assert np.isclose(raw_dataframes["payments.csv"]["payment_value"].sum(),
-                      processed_dataframes["payments.csv"]["payment_value"].sum()), "LOI: payment_value bi doi!"
-    # returns
-    assert np.isclose(raw_dataframes["returns.csv"]["return_quantity"].sum(),
-                      processed_dataframes["returns.csv"]["return_quantity"].sum()), "LOI: return_quantity bi doi!"
-    assert np.isclose(raw_dataframes["returns.csv"]["refund_amount"].sum(),
-                      processed_dataframes["returns.csv"]["refund_amount"].sum()), "LOI: refund_amount bi doi!"
-    # products
-    assert np.isclose(raw_dataframes["products.csv"]["price"].sum(),
-                      processed_dataframes["products.csv"]["price"].sum()), "LOI: price products bi doi!"
-    assert np.isclose(raw_dataframes["products.csv"]["cogs"].sum(),
-                      processed_dataframes["products.csv"]["cogs"].sum()), "LOI: cogs products bi doi!"
-    # sales
-    assert np.isclose(raw_dataframes["sales.csv"]["Revenue"].sum(),
-                      processed_dataframes["sales.csv"]["Revenue"].sum()), "LOI: Revenue sales bi doi!"
-    assert np.isclose(raw_dataframes["sales.csv"]["COGS"].sum(),
-                      processed_dataframes["sales.csv"]["COGS"].sum()), "LOI: COGS sales bi doi!"
+    numeric_checks = [
+        ("order_items.csv", "quantity"),
+        ("order_items.csv", "unit_price"),
+        ("order_items.csv", "discount_amount"),
+        ("payments.csv",    "payment_value"),
+        ("returns.csv",     "return_quantity"),
+        ("returns.csv",     "refund_amount"),
+        ("products.csv",    "price"),
+        ("products.csv",    "cogs"),
+        ("sales.csv",       "Revenue"),
+        ("sales.csv",       "COGS"),
+    ]
+    for fn, col in numeric_checks:
+        r_sum = raw_dataframes[fn][col].sum()
+        p_sum = processed_dataframes[fn][col].sum()
+        assert np.isclose(r_sum, p_sum), f"LOI: {col} o {fn} bi thay doi! Raw: {r_sum}, Proc: {p_sum}"
     print("  => KHOP TUYET DOI: Toan bo tong so tien, so luong giu nguyen chinh xac.")
 
     # Kiem tra 3.4: Xac nhan ban ghi RET-043492 co mat nguyen ven
