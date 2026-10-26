@@ -1,0 +1,50 @@
+# =============================================================================
+# Git Ignore Configuration - Fashion_DW_Project
+# =============================================================================
+
+# 1. Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.ipynb_checkpoints/
+
+# 2. Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# 3. Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+
+# 4. IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# 5. Operating System Files
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 6. Large Data Files (Do not commit raw/processed CSV datasets)
+data/raw/*.csv
+data/processed/*.csv
+
+# Retain directory structure with .gitkeep
+!data/raw/.gitkeep
+!data/processed/.gitkeep

@@ -1,0 +1,64 @@
+﻿Ma_KT,Bang,Ten_KT,Mo_ta,So_van_de,Tong_KT,Ty_le_%,Trang_thai,Ghi_chu
+1.1,customers,DTYPE_DATE,signup_date parse errors,0,121930,0.0,DAT,Kiem tra dinh dang ngay
+1.2,customers,VALUE_FUTURE,signup_date > today,0,121930,0.0,DAT,Khach hang chua the dang ky trong tuong lai
+1.3,customers,VALUE_ENUM,gender invalid,0,121930,0.0,DAT,"Gia tri hop le: {'Female', 'Male', 'Non-binary'}"
+1.4,customers,VALUE_ENUM,age_group invalid,0,121930,0.0,DAT,"Gia tri hop le: {'45-54', '35-44', '25-34', '18-24', '55+'}"
+1.5,customers,VALUE_ENUM,acquisition_channel invalid,0,121930,0.0,DAT,"Gia tri hop le: {'direct', 'referral', 'social_media', 'paid_search', 'organic_search', 'email_campaign'}"
+2.1,geography,VALUE_RANGE,zip <= 0,0,39948,0.0,DAT,Ma buu chinh phai la so duong
+2.2,geography,VALUE_ENUM,region distinct values,0,39948,0.0,DAT,"Distinct: ['Central', 'East', 'West']"
+3.1,products,VALUE_RANGE,price <= 0,0,2412,0.0,DAT,Gia ban phai duong
+3.2,products,VALUE_RANGE,cogs <= 0,0,2412,0.0,DAT,Gia von phai duong
+3.3,products,LOGIC,cogs > price,0,2412,0.0,DAT,Ban duoi gia von la bat thuong nghiep vu
+3.4,products,VALUE_RANGE,gross_margin < 5%,130,2412,5.3897,NGHI_VAN,"Bien lai thap bat thuong, can xem xet nghiep vu"
+3.5,products,VALUE_ENUM,category invalid,0,2412,0.0,DAT,"Gia tri hop le: {'Streetwear', 'GenZ', 'Casual', 'Outdoor'}"
+4.1,promotions,VALUE_RANGE,discount_value < 0,0,50,0.0,DAT,Muc giam gia khong the am
+4.2,promotions,VALUE_RANGE,pct discount_value > 100%,0,45,0.0,DAT,Giam gia phan tram khong the vuot 100%
+4.3,promotions,TIME_ORDER,end_date < start_date,0,50,0.0,DAT,Ngay ket thuc phai sau ngay bat dau
+4.4,promotions,VALUE_ENUM,"stackable_flag not in {0,1}",0,50,0.0,DAT,Flag phai la 0 hoac 1
+4.5,promotions,VALUE_RANGE,min_order_value < 0,0,50,0.0,DAT,Nguong don hang toi thieu khong the am
+5.1,orders,DTYPE_DATE,order_date parse errors,0,646945,0.0,DAT,Kiem tra dinh dang ngay
+5.2,orders,VALUE_FUTURE,order_date > today,0,646945,0.0,DAT,Don hang khong the o tuong lai
+5.3,orders,VALUE_ENUM,order_status invalid,0,646945,0.0,DAT,"Gia tri hop le: {'shipped', 'returned', 'created', 'cancelled', 'paid', 'delivered'}"
+5.4,orders,VALUE_ENUM,payment_method invalid,0,646945,0.0,DAT,"Gia tri hop le: {'apple_pay', 'cod', 'paypal', 'bank_transfer', 'credit_card'}"
+5.5,orders,VALUE_ENUM,device_type invalid,0,646945,0.0,DAT,"Gia tri hop le: {'desktop', 'mobile', 'tablet'}"
+5.6,orders,TIME_ORDER,order_date < customer signup_date,477453,646945,73.8012,NGHI_VAN,"signup_date co the la ngay cap nhat ho so, khong phai ngay dang ky lan dau. Ti le 73.7% cho thay day la dac trung du lieu, can xac minh voi chu du an."
+6.1,order_items,VALUE_RANGE,quantity <= 0,0,714669,0.0,DAT,So luong phai la so nguyen duong
+6.2,order_items,VALUE_RANGE,unit_price <= 0,0,714669,0.0,DAT,Don gia phai duong
+6.3,order_items,VALUE_RANGE,discount_amount < 0,0,714669,0.0,DAT,Giam gia khong the am
+6.4,order_items,LOGIC,discount_amount > total_line_value,0,714669,0.0,DAT,Giam gia khong the lon hon gia tri dong hang
+6.5,order_items,LOGIC,promo_id set but discount=0,0,714669,0.0,DAT,Co the la KM ngoai thi truong (free shipping) nhung can xac nhan
+6.6,order_items,LOGIC,no promo_id but discount_amount > 0,0,714669,0.0,DAT,Can xac nhan: co the la giam gia tho cong hoac thieu promo_id
+7.1,payments,VALUE_RANGE,payment_value <= 0,0,646945,0.0,DAT,Gia tri thanh toan phai duong
+7.2,payments,VALUE_ENUM,installments invalid,0,646945,0.0,DAT,"Gia tri quan sat: [np.int64(1), np.int64(2), np.int64(3), np.int64(6), np.int64(12)] — xac nhan chinh sach tra gop"
+7.3,payments,LOGIC,payment_value != sum(line_totals),0,646945,0.0,DAT,Gia tri thanh toan phai khop voi tong dong hang sau giam gia
+8.1,shipments,DTYPE_DATE,ship_date parse errors,0,566067,0.0,DAT,
+8.2,shipments,DTYPE_DATE,delivery_date parse errors,0,566067,0.0,DAT,
+8.3,shipments,TIME_ORDER,delivery_date < ship_date,0,566067,0.0,DAT,Khong the giao hang truoc khi xuat kho
+8.4,shipments,TIME_ORDER,ship_date < order_date,0,566067,0.0,DAT,Khong the xuat kho truoc khi dat hang
+8.5,shipments,VALUE_RANGE,shipping_fee < 0,0,566067,0.0,DAT,Phi van chuyen khong the am
+8.6,shipments,VALUE_ZERO,shipping_fee = 0,805,566067,0.1422,NGHI_VAN,"Co the la chinh sach mien phi van chuyen, can xac nhan"
+9.1,returns,DTYPE_DATE,return_date parse errors,0,39939,0.0,DAT,
+9.2,returns,TIME_ORDER,return_date < order_date,0,39939,0.0,DAT,Khong the tra hang truoc khi dat hang
+9.3,returns,VALUE_RANGE,return_quantity <= 0,0,39939,0.0,DAT,So luong tra hang phai duong
+9.4,returns,LOGIC,return_quantity > bought_quantity,0,39939,0.0,DAT,Tong so luong tra khong the vuot tong so luong da mua
+9.5,returns,VALUE_RANGE,refund_amount <= 0,0,39939,0.0,DAT,So tien hoan tra phai duong
+9.6,returns,VALUE_ENUM,return_reason invalid,0,39939,0.0,DAT,"Gia tri hop le: {'defective', 'late_delivery', 'changed_mind', 'not_as_described', 'wrong_size'}"
+10.1,reviews,VALUE_RANGE,"rating not in [1,5]",0,113551,0.0,DAT,Rating phai tu 1 den 5
+10.2,reviews,TIME_ORDER,review_date < order_date,0,113551,0.0,DAT,Khong the danh gia truoc khi dat hang
+10.3,reviews,TIME_ORDER,review_date < delivery_date,0,113551,0.0,DAT,Mot so he thong cho phep danh gia ngay sau khi dat hang; can xac nhan chinh sach cua san
+11.1,inventory,VALUE_RANGE,stock_on_hand < 0,0,60247,0.0,DAT,Ton kho khong the am
+11.2,inventory,VALUE_RANGE,"fill_rate not in [0,1]",0,60247,0.0,DAT,"Fill rate la ty le, phai trong [0,1]"
+11.3,inventory,VALUE_RANGE,"sell_through_rate not in [0,1]",0,60247,0.0,DAT,"Sell-through rate la ty le, phai trong [0,1]"
+11.4,inventory,VALUE_CONST,reorder_flag always 0,1,1,100.0,NGHI_VAN,"reorder_flag luon bang 0 tren toan bo 60,247 ban ghi — co the do logic tai tao du lieu hoac chinh sach kho chua duoc kich hoat"
+11.5,inventory,VALUE_ENUM,"stockout_flag not in {0,1}",0,60247,0.0,DAT,Flag phai la 0 hoac 1
+11.6,inventory,VALUE_ENUM,"overstock_flag not in {0,1}",0,60247,0.0,DAT,Flag phai la 0 hoac 1
+11.7,inventory,VALUE_RANGE,units_sold < 0,0,60247,0.0,DAT,So luong ban khong the am
+12.1,sales,VALUE_RANGE,Revenue <= 0,0,3833,0.0,DAT,Doanh thu phai duong
+12.2,sales,VALUE_RANGE,COGS <= 0,0,3833,0.0,DAT,Chi phi von phai duong
+12.3,sales,LOGIC,COGS > Revenue,382,3833,9.9661,NGHI_VAN,Ban lo tren tong hop ngay — can xac nhan voi don vi nghiep vu
+12.4,sales,DUPLICATE,Date duplicated,0,3833,0.0,DAT,Moi ngay chi co 1 ban ghi tong hop
+13.1,web_traffic,LOGIC,sessions < unique_visitors,0,3652,0.0,DAT,Mot nguoi co the tao nhieu phien; sessions thuong >= unique_visitors
+13.2,web_traffic,VALUE_RANGE,"bounce_rate not in [0,1]",0,3652,0.0,DAT,"Ty le bounce phai trong [0,1]"
+13.3,web_traffic,VALUE_RANGE,avg_session_duration_sec < 0,0,3652,0.0,DAT,Thoi gian phien khong the am
+13.4,web_traffic,DUPLICATE,date duplicated,0,3652,0.0,DAT,Co the co nhieu dong/nguon traffic cung ngay — kiem tra traffic_source
+13.5,web_traffic,LOGIC,page_views < sessions,0,3652,0.0,DAT,Trung binh page_views/session phai >= 1

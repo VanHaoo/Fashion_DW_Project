@@ -1,0 +1,10 @@
+﻿Ma_kiem_tra,Mo_ta,So_ban_ghi,Ty_le_%,Danh_gia
+KT1,Co promo_id nhung discount_amount = 0,0,0.0,Binh thuong
+KT2,Khong co promo nhung discount_amount > 0,0,0.0,Binh thuong
+KT3,Co promo_id_2 nhung thieu promo_id,0,0.0,Binh thuong
+KT4a,promo_id khong ton tai trong promotions,0,0.0,Hop le
+KT4b,promo_id_2 khong ton tai trong promotions,0,0.0,Hop le
+KT5,discount_amount co gia tri am,0,0.0,Binh thuong
+KT6a,NULL: order_items.promo_id,438353,61.3365,Binh thuong - don hang khong ap khuyen mai
+KT6b,NULL: order_items.promo_id_2,714463,99.9712,Binh thuong - khong xep chong khuyen mai
+KT6c,NULL: promotions.applicable_category,40,80.0,Co the hop le - khuyen mai cho tat ca danh muc

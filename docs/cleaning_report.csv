@@ -1,0 +1,14 @@
+﻿Bang,So_dong_raw,So_dong_processed,So_dong_cach_ly,Ty_le_bao_toan_%,So_cot,So_gia_tri_chuan_hoa,Trang_thai,Ghi_chu
+customers.csv,121930,121930,0,100.0,7,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
+geography.csv,39948,39948,0,100.0,4,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
+inventory.csv,60247,60247,0,100.0,17,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
+order_items.csv,714669,714669,0,100.0,7,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
+orders.csv,646945,646945,0,100.0,8,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
+payments.csv,646945,646945,0,100.0,4,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
+products.csv,2412,2412,0,100.0,8,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
+promotions.csv,50,50,0,100.0,10,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
+returns.csv,39939,39939,0,100.0,7,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
+reviews.csv,113551,113551,0,100.0,7,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
+sales.csv,3833,3833,0,100.0,3,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
+shipments.csv,566067,566067,0,100.0,4,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
+web_traffic.csv,3652,3652,0,100.0,7,0,HOAN_THANH,Bao toan 100% du lieu; chuan hoa chuoi & ngay
